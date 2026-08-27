@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bashy · פיתוח תוכנה ואתרים</title>
+<meta name="description" content="Bashy – מפתחת תוכנה. אתרים, מערכות ואוטומציות בקוד נקי, בלי תבניות.">
+<link rel="icon" type="image/svg+xml" href="bashy-mark.svg">
+<meta property="og:title" content="Bashy · פיתוח תוכנה ומערכות">
+<meta property="og:description" content="אתרים ומערכות שנכתבים בקוד, לא בתבנית.">
+<meta property="og:image" content="https://bashy34.github.io/dirochag-home.png">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3F2EE; --ink:#111318; --muted:#6B7280; --line:#DDDBD4; --accent:#2CC9B0; --accent-ink:#0E8C79; --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:"Heebo",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  /* header */
+  header{display:flex;align-items:center;justify-content:space-between;padding:28px 0}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;font-size:20px;letter-spacing:-.5px}
+  .brand svg{width:36px;height:36px}
+  nav a{text-decoration:none;color:var(--muted);font-size:15px;margin-inline-start:24px}
+  nav a:hover,nav a:focus-visible{color:var(--ink)}
+
+  /* hero */
+  .hero{padding:72px 0 64px;border-bottom:1px solid var(--line)}
+  .prompt{font-size:14px;color:var(--muted);margin-bottom:22px}
+  .prompt .c{display:inline-block;width:9px;height:17px;background:var(--accent);vertical-align:-3px;margin-inline-start:4px;animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  h1{font-size:clamp(38px,6.5vw,66px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;max-width:14ch}
+  h1 em{font-style:normal;color:var(--accent-ink)}
+  .lead{margin-top:22px;font-size:19px;color:var(--muted);max-width:52ch}
+  .about{margin-top:16px;font-size:16px;color:var(--ink);max-width:56ch;padding-inline-start:14px;border-inline-start:3px solid var(--accent)}
+  .quote{background:var(--ink);color:#F4F5F7;border-radius:20px;padding:32px;margin-top:24px}
+  .quote p{font-size:19px;line-height:1.6;max-width:60ch}
+  .quote cite{display:block;margin-top:16px;font-style:normal;color:var(--accent);font-size:14px;font-family:"JetBrains Mono",monospace}
+  .cta{display:inline-flex;align-items:center;gap:10px;margin-top:34px;background:var(--ink);color:#fff;text-decoration:none;padding:14px 22px;border-radius:12px;font-weight:500;transition:transform .15s}
+  .cta:hover,.cta:focus-visible{transform:translateY(-2px)}
+  .cta span{font-family:"JetBrains Mono",monospace;font-size:14px;opacity:.7}
+
+  /* sections */
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:13px;color:var(--accent-ink);letter-spacing:1px;margin-bottom:14px}
+  h2{font-size:28px;font-weight:800;letter-spacing:-.5px;margin-bottom:24px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .tile h3{font-size:17px;font-weight:800;margin-bottom:6px}
+  .tile p{color:var(--muted);font-size:15px}
+
+  /* project */
+  .project{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;text-decoration:none;transition:border-color .15s}
+  .project:hover,.project:focus-visible{border-color:var(--accent)}
+  .shot{aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#E8E6DF,#F7F6F2);display:grid;place-items:center;color:var(--muted);font-size:13px;overflow:hidden}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .project h3{font-size:22px;font-weight:800;margin-bottom:8px}
+  .project p{color:var(--muted)}
+  .project .go{display:inline-block;margin-top:14px;color:var(--accent-ink);font-weight:500;font-family:"JetBrains Mono",monospace;font-size:14px}
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .shots img{width:100%;border-radius:14px;border:1px solid var(--line);display:block}
+
+  /* stack */
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{font-family:"JetBrains Mono",monospace;font-size:13px;border:1px solid var(--line);background:var(--card);padding:7px 12px;border-radius:999px}
+
+  /* contact */
+  .contact{padding:64px 0;border-bottom:0}
+  .mail{font-family:"JetBrains Mono",monospace;font-size:clamp(20px,4vw,34px);font-weight:600;text-decoration:none;border-bottom:3px solid var(--accent);padding-bottom:4px}
+  .links{margin-top:22px;display:flex;gap:20px;flex-wrap:wrap}
+  .links a{color:var(--muted);text-decoration:none;font-size:15px}
+  .links a:hover{color:var(--ink)}
+
+  footer{padding:24px 0 40px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media (max-width:640px){
+    .project,.shots{grid-template-columns:1fr}
+    nav a{margin-inline-start:16px}
+  }
+  @media (prefers-reduced-motion:reduce){.prompt .c{animation:none}.cta{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <a class="brand" href="#" aria-label="Bashy">
+    <svg viewBox="0 0 120 120" aria-hidden="true"><rect x="10" y="10" width="100" height="100" rx="26" fill="#111318"/><g fill="none" stroke="#F4F5F7" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><line x1="42" y1="34" x2="42" y2="86"/><path d="M42 34 H62 a12 12 0 0 1 0 24 H42"/><path d="M42 58 H66 a14 14 0 0 1 0 28 H42"/></g><rect x="80" y="76" width="10" height="16" rx="2" fill="#2CC9B0"/></svg>
+    Bashy
+  </a>
+  <nav>
+    <a href="#work">עבודות</a>
+    <a href="#services">מה אני עושה</a>
+    <a href="#contact">צור קשר</a>
+  </nav>
+</header>
+
+<section class="hero" style="border-top:0">
+  <div class="prompt mono" dir="ltr" style="text-align:right">bashy ~ $ <span class="c"></span></div>
+  <h1>אתרים ומערכות<br>שנכתבים <em>בקוד</em>,<br>לא בתבנית.</h1>
+  <p class="lead">אני Bashy, מפתחת תוכנה. אני בונה אתרים, מערכות פנימיות ואוטומציות מאפס – מהירים, נקיים, ומותאמים בדיוק למה שהעסק צריך.</p>
+  <p class="about">עבדתי כמפתחת בסטארטאפ – בניתי אוטומציות וואטסאפ ושירותי backend ב-TypeScript ו-GraphQL, ועבדתי מול לקוחות ישירות. היום אני עצמאית.</p>
+  <a class="cta" href="mailto:b053425608@gmail.com">דברו איתי <span>mail →</span></a>
+</section>
+
+<section id="services">
+  <div class="eyebrow mono">// מה אני בונה</div>
+  <h2>מוצר שלם – מהרעיון ועד שהוא באוויר.</h2>
+  <div class="grid">
+    <div class="tile"><h3>אתרים ופלטפורמות</h3><p>אתר תדמית, מערכת מנויים, מאגר עם חיפוש וסינון – בקוד שנכתב במיוחד, לא בתבנית. נטען מהר, נראה טוב בנייד, ומחזיק לאורך זמן.</p></div>
+    <div class="tile"><h3>מערכות ניהול</h3><p>פאנל ניהול, משתמשים והרשאות, אישורים ודחיות, ייצוא נתונים. מה שצריך כדי לנהל את העסק ממקום אחד בלי לפתוח אקסל.</p></div>
+    <div class="tile"><h3>אוטומציות</h3><p>תהליכים שקורים לבד: תוכן שמגיע מהטלפון ועולה לאתר, מיילים שממוינים ומטופלים, חיבור בין כלים שאתם כבר משתמשים בהם.</p></div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="eyebrow mono">// תיק עבודות</div>
+  <h2>דירוחג</h2>
+  <a class="project" href="https://www.dirochag.co.il" target="_blank" rel="noopener">
+    <div class="shot"><img src="dirochag-home.png" alt="דף הבית של דירוחג"></div>
+    <div>
+      <h3>מאגר דירות לחגים עם מנוי בתשלום</h3>
+      <p>פלטפורמה מלאה שפיתחתי מאפס: משתמשים מעלים דירות להשכרה לחגים, ומנויים מחפשים ומסננים לפי עיר, חג ומספר חדרים. המערכת כוללת מנגנון מנויים ותשלום, פאנל ניהול לאישור ודחיית דירות, ניהול משתמשים ופניות, תהליך אוטומטי שבו דירה שנשלחת מהטלפון עולה לאתר ללא מגע יד, ושליחת מייל אוטומטית לבעל הדירה ולמנהל עם כל פרסום.</p>
+      <span class="go">www.dirochag.co.il ↗</span>
+    </div>
+  </a>
+  <div class="shots">
+    <img src="dirochag-list.png" alt="עמוד חיפוש וסינון דירות">
+    <img src="dirochag-admin.png" alt="פאנל ניהול הדירות">
+  </div>
+  <blockquote class="quote">
+    <p>"הגעתי עם רעיון ובלי ידע טכני, וקיבלתי אתר עובד עם מנויים, תשלומים ופאנל ניהול. היום דירות שנשלחות אליי בטלפון עולות לאתר לבד. כל בקשה שלי נענתה מהר ובוצעה נקי."</p>
+    <cite>— א.ש., בעלים, דירוחג</cite>
+  </blockquote>
+</section>
+
+<section id="stack">
+  <div class="eyebrow mono">// כלים</div>
+  <h2>הסטאק</h2>
+  <div class="chips" dir="ltr" style="justify-content:flex-end">
+    <span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">Node.js</span><span class="chip">GraphQL</span><span class="chip">MongoDB</span><span class="chip">Java</span><span class="chip">C#</span><span class="chip">C / C++</span><span class="chip">HTML / CSS</span><span class="chip">Git</span>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="eyebrow mono">// צור קשר</div>
+  <h2>יש פרויקט? בואו נדבר.</h2>
+  <a class="mail" href="mailto:b053425608@gmail.com" dir="ltr">b053425608@gmail.com</a>
+  <div class="links">
+    <a href="https://github.com/bashy34" target="_blank" rel="noopener">GitHub</a>
+  </div>
+
+</section>
+
+<footer>
+  <span>© 2026 Bashy</span>
+  <span class="mono" dir="ltr">built by hand, no templates</span>
+</footer>
+
+</div>
+</body>
+</html>
